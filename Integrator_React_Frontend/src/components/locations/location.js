@@ -7,18 +7,18 @@ import Post from '../posts/post'
 export default function Location() {
 
     const { id } = useParams();
-	const [dataLocation, setData] = useState({ locations: [] });
+    const [dataLocation, setData] = useState({ locations: [] });
 
     useEffect(() => {
-		axiosInstance.get(`location/item/${id}/`).then((res) => {
-			setData({ locations: res.data });			
-		});        
-	}, [setData]);
+	axiosInstance.get(`location/item/${id}/`).then((res) => {
+		setData({ locations: res.data });			
+	});        
+    }, [setData]);
 
     const handleFollow = (e) => {
         e.preventDefault();	
 
-		axiosInstance.put(`location/follow/${id}/`, {})
+	axiosInstance.put(`location/follow/${id}/`, {})
         .then((res) => {            
             setData({ locations: res.data })
         });               
@@ -30,10 +30,10 @@ export default function Location() {
 
     useEffect(() => {
         axiosInstance.get(`events/location/?id=${id}`).then((res) => {
-			setEvents({ events: res.data });			
-            setNextEvents(res.data.next);
-		});        
-	}, [setEvents]);
+		setEvents({ events: res.data });			
+            	setNextEvents(res.data.next);
+	});        
+    }, [setEvents]);
 
     const handleLoadNextEvents = (e) => {
         e.preventDefault();
@@ -50,16 +50,16 @@ export default function Location() {
     const [dataPost, setPosts] = useState({ posts: [] });
     const [nextUrl, setNextUrl] = useState(null)
     const initialFormData = Object.freeze({
-		text: '',
-	});
+	text: '',
+    });
     const [formData, updateFormData] = useState(initialFormData);
 
     useEffect(() => {
         axiosInstance.get(`posts/location/?id=${id}`).then((res) => {
-			setPosts({ posts: res.data.results });	
+	    setPosts({ posts: res.data.results });	
             setNextUrl(res.data.next);		
-		});        
-	}, [setPosts]);    
+	});        
+    }, [setPosts]);    
 
     const handleLoadNext = (e) => {
         e.preventDefault();
@@ -74,27 +74,27 @@ export default function Location() {
     }
 
     const handleChange = (e) => {
-		updateFormData({
-			...formData,			
-			[e.target.name]: e.target.value,
-		});
-	};
+	updateFormData({
+		...formData,			
+		[e.target.name]: e.target.value,
+	});
+    };
 
-	const handleSubmit = (e) => {
-		e.preventDefault();		
+    const handleSubmit = (e) => {
+	e.preventDefault();		
 
-		axiosInstance.post(`post/location/create/?id=${id}`, {
+	axiosInstance.post(`post/location/create/?id=${id}`, {
             text: formData.text.trim(),
         })
         .then((res) => {
             setPosts(dataPost => ({ posts: [res.data, ...dataPost.posts]}));     
             document.getElementById('text').value = '';       
         });
-	};
+    };
 
 	return (
-		<React.Fragment>
-			<div className='container'>
+	<React.Fragment>
+	    <div className='container'>
                 <div className='row'>              
                     <div className='col'>
                         <div className='card mt-2 mb-4 bg-dark text-white'>
@@ -164,7 +164,7 @@ export default function Location() {
                 </div>
 
             </div>
-		</React.Fragment>
+	</React.Fragment>
 	);
 
 }

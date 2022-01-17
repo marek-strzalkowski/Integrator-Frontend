@@ -6,14 +6,14 @@ import Post from '../posts/post'
 
 export default function Event() {
 
-	const { id } = useParams();    
-	const [data, setData] = useState({ events: [] });
+    const { id } = useParams();    
+    const [data, setData] = useState({ events: [] });
         
-	useEffect(() => {
-		axiosInstance.get(`events/item/${id}/`).then((res) => {
-			setData({ events: res.data });			
-		});
-	}, [setData]);
+    useEffect(() => {
+	axiosInstance.get(`events/item/${id}/`).then((res) => {
+		setData({ events: res.data });			
+	});
+    }, [setData]);
 
     const handleLink = (e) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ export default function Event() {
     const handleGoing = (e) => {
         e.preventDefault();		
         
-		axiosInstance.put(`event/going/${id}/`, {})
+	axiosInstance.put(`event/going/${id}/`, {})
         .then((res) => {            
             setData({ events: res.data })
         });               
@@ -33,16 +33,16 @@ export default function Event() {
     const [dataPost, setPosts] = useState({ posts: [] });
     const [nextUrl, setNextUrl] = useState(null)
     const initialFormData = Object.freeze({
-		text: '',
-	});
+	text: '',
+    });
     const [formData, updateFormData] = useState(initialFormData);
     
     useEffect(() => {
         axiosInstance.get(`posts/event/?id=${id}`).then((res) => {
-			setPosts({ posts: res.data.results });	
+	    setPosts({ posts: res.data.results });	
             setNextUrl(res.data.next);
-		});        
-	}, [setPosts]);
+	});        
+    }, [setPosts]);
     
     const handleLoadNext = (e) => {
         e.preventDefault();
@@ -57,27 +57,27 @@ export default function Event() {
     }
 
     const handleChange = (e) => {
-		updateFormData({
-			...formData,			
-			[e.target.name]: e.target.value,
-		});
-	};
+	updateFormData({
+		...formData,			
+		[e.target.name]: e.target.value,
+	});
+    };
 
-	const handleSubmit = (e) => {
-		e.preventDefault();	
+    const handleSubmit = (e) => {
+	e.preventDefault();	
 
-		axiosInstance.post(`post/event/create/?id=${id}`, {
+	axiosInstance.post(`post/event/create/?id=${id}`, {
             text: formData.text.trim(),
         })
         .then((res) => {
             setPosts(dataPost => ({ posts: [res.data, ...dataPost.posts]}));            
             document.getElementById('text').value = '';
         });
-	};
+    };
 
 	return (
-		<React.Fragment>
-			<div className='container'>
+	<React.Fragment>
+	    <div className='container'>
                 <div className='row'>              
                     <div className='col'>
                         <div className='card mt-2 mb-4'>
@@ -126,7 +126,7 @@ export default function Event() {
                 </div> 
 
             </div>
-		</React.Fragment>
+	</React.Fragment>
 	);
 
 }

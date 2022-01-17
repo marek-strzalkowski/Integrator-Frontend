@@ -8,15 +8,15 @@ export default function CreateEvent() {
 	const initialFormData = Object.freeze({
 		name: '',
 		start: '',
-        end: '',
-        info: '',
-        location: '',		
-        address: '',
+		end: '',
+		info: '',
+		location: '',		
+		address: '',
 	});
 	const [formData, updateFormData] = useState(initialFormData);    
-    const [data, setData] = useState({ locationOptions: [] });
+   	const [data, setData] = useState({ locationOptions: [] });
 
-    useEffect(() => {
+    	useEffect(() => {
 		axiosInstance.get(`locations/short/`).then((res) => {
 			setData({ locationOptions: res.data });			
 		});
@@ -33,16 +33,16 @@ export default function CreateEvent() {
 		e.preventDefault();
 		
 		axiosInstance.post(`events/create/`, {
-            name: formData.name.trim(),
-            start: formData.start,
-            end: formData.end,
-            info: formData.info.trim(),
-            location: formData.location,
-            address: formData.address.trim(),
-        })
-        .then((res) => {
-            navigate('/');
-        });
+		    name: formData.name.trim(),
+		    start: formData.start,
+		    end: formData.end,
+		    info: formData.info.trim(),
+		    location: formData.location,
+		    address: formData.address.trim(),
+		})
+		.then((res) => {
+		    navigate('/');
+		});
 	};
 
 	return (

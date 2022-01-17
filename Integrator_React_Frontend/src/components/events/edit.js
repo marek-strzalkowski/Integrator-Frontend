@@ -5,38 +5,38 @@ import { useNavigate, useParams } from 'react-router-dom';
 export default function EditEvent() {
 
 	const navigate = useNavigate();
-    const { id } = useParams();
+    	const { id } = useParams();
 	const initialFormData = Object.freeze({
 		id: '',
-        name: '',
+        	name: '',
 		start: '',
-        end: '',
-        info: '',
-        location: '',		
-        address: '',
+		end: '',
+		info: '',
+		location: '',		
+		address: '',
 	});
 	const [formData, updateFormData] = useState(initialFormData);
-    const [data, setData] = useState({ locationOptions: [] });
+    	const [data, setData] = useState({ locationOptions: [] });
 
-    useEffect(() => {
+    	useEffect(() => {
 		axiosInstance.get(`locations/short/`).then((res) => {
 			setData({ locationOptions: res.data });			
 		});
 	}, [setData]);
 
-    useEffect(() => {
+    	useEffect(() => {
 		axiosInstance.get(`events/item/${id}/`).then((res) => {
 			if (res.data.is_creator === false) {
-                window.location.href = '/';
-            }  
-            updateFormData({
+                		window.location.href = '/';
+            		}  
+            		updateFormData({
 				...formData,
 				['name']: res.data.name,
-                ['start']: res.data.start_raw,
-                ['end']: res.data.end_raw,
-                ['info']: res.data.info,
-                ['location']: res.data.location[0],
-                ['address']: res.data.address,
+				['start']: res.data.start_raw,
+				['end']: res.data.end_raw,
+				['info']: res.data.info,
+				['location']: res.data.location[0],
+				['address']: res.data.address,
 			});		            
 		});
 	}, [updateFormData]);
@@ -52,16 +52,16 @@ export default function EditEvent() {
 		e.preventDefault();
 		
 		axiosInstance.put(`events/edit/${id}/`, {
-            name: formData.name.trim(),
-            start: formData.start,
-            end: formData.end,
-            info: formData.info.trim(),
-            location: formData.location,
-            address: formData.address.trim(),
-        })
-        .then((res) => {
-            navigate(`../event/${id}/`);
-        });
+		    name: formData.name.trim(),
+		    start: formData.start,
+		    end: formData.end,
+		    info: formData.info.trim(),
+		    location: formData.location,
+		    address: formData.address.trim(),
+		})
+		.then((res) => {
+		    navigate(`../event/${id}/`);
+		});
 	};
 
     const handleLink = (e) => {

@@ -33,26 +33,26 @@ export default function Login() {
 	};
 
 	return (
-		<React.Fragment>
-            <div className='container'>
-                <div className='col' style={{maxWidth:'30rem'}}>
-                	<h1>Login</h1>
+	    	<React.Fragment>
+        	    <div className='container'>
+               		<div className='col' style={{maxWidth:'30rem'}}>
+			    <h1>Login</h1>
 
-                    <form>
-                        <div class='form-group'>
-                            <label>Email address</label>
-                            <input type="email" className='form-control' required id="email" name="email" autoComplete="email" onChange={handleChange} />
-                        </div>                        
-                        <div class='form-group'>
-                            <label>Password</label>
-                            <input type="password" className='form-control' required id="password" name="password" autoComplete="password" onChange={handleChange} />
-                        </div>
-                        <button type="submit" class="btn btn-primary mt-4" onClick={handleSubmit}>Login</button>                    
-                    </form>
-					
+			    <form>
+				<div class='form-group'>
+				    <label>Email address</label>
+				    <input type="email" className='form-control' required id="email" name="email" autoComplete="email" onChange={handleChange} />
+				</div>                        
+				<div class='form-group'>
+				    <label>Password</label>
+				    <input type="password" className='form-control' required id="password" name="password" autoComplete="password" onChange={handleChange} />
 				</div>
+				<button type="submit" class="btn btn-primary mt-4" onClick={handleSubmit}>Login</button>                    
+			    </form>
+					
 			</div>
-		</React.Fragment>
+		    </div>
+	    	</React.Fragment>
 	);
 
 }

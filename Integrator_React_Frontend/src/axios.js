@@ -54,19 +54,21 @@ axiosInstance.interceptors.response.use((response) => {
 						.catch((err) => {
 							console.log(err);
 						});
-				} else {
+				} 
+				else {
 					console.log('Refresh token is expired', tokenParts.exp, now);
 					window.location.href = '/login/';
 				}
-			} else {
+			} 
+			else {
 				console.log('Refresh token not available.');
 				window.location.href = '/login/';
 			}
 		}
-        else {
-            console.log('No token available.');
+		else {
+		    	console.log('No token available.');
 			window.location.href = '/login/';
-        }
+		}
 
 		return Promise.reject(error);
 	}

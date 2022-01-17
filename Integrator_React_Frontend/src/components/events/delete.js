@@ -5,27 +5,27 @@ import { useNavigate, useParams } from 'react-router-dom';
 export default function DeleteEvent() {
 
 	const navigate = useNavigate();
-    const { id } = useParams();
+    	const { id } = useParams();
 	
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		
 		axiosInstance.delete(`events/delete/${id}/`, {
  
-        })
-        .catch(function (error) {
-            if (error.response) {
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            }
-        })
-        .then((res) => {
-            navigate(`../events/`);
-        });
+		})
+		.catch(function (error) {
+		    if (error.response) {
+			console.log(error.response.data);
+			console.log(error.response.status);
+			console.log(error.response.headers);
+		    }
+		})
+		.then((res) => {
+		    navigate(`../events/`);
+		});
 	};
     
-	return (
+    return (
         <React.Fragment>
             <div className='container'>
                 <div className='row'>  

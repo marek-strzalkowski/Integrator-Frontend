@@ -4,53 +4,53 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditProfile() {
 
-	const navigate = useNavigate();
+    const navigate = useNavigate();
     const { id } = useParams();
     const initialFormData = Object.freeze({
         id: '',
-		about: '',
+	about: '',
         location: '',		
-	});
-	const [formData, updateFormData] = useState(initialFormData);
+    });
+    const [formData, updateFormData] = useState(initialFormData);
     const [data, setData] = useState({ locationOptions: [] });
 
     useEffect(() => {
-		axiosInstance.get(`locations/short/`).then((res) => {
-			setData({ locationOptions: res.data });			
-		});
-	}, [setData]);
+	axiosInstance.get(`locations/short/`).then((res) => {
+		setData({ locationOptions: res.data });			
+	});
+    }, [setData]);
 
     useEffect(() => {
-		axiosInstance.get(`user/edit/${id}`).then((res) => {
-			if (res.data.is_me === false) {
+	axiosInstance.get(`user/edit/${id}`).then((res) => {
+	    if (res.data.is_me === false) {
                 window.location.href = '/';
             }            
             updateFormData({
-				...formData,                
-				['about']: res.data.about,
+		...formData,                
+		['about']: res.data.about,
                 ['location']: res.data.location,
-			});		            
-		});
-	}, [updateFormData]);
+	    });		            
+	});
+    }, [updateFormData]);
 
-	const handleChange = (e) => {
-		updateFormData({
-			...formData,			
-			[e.target.name]: e.target.value,
-		});
-	};
+    const handleChange = (e) => {
+	updateFormData({
+		...formData,			
+		[e.target.name]: e.target.value,
+	});
+    };
 
-	const handleSubmit = (e) => {
-		e.preventDefault();		
+    const handleSubmit = (e) => {
+	e.preventDefault();		
 
-		axiosInstance.put(`user/edit/${id}/`, {
+	axiosInstance.put(`user/edit/${id}/`, {
             about: formData.about.trim(),
             location: formData.location,
         })
         .then((res) => {
             navigate(`../profile/${id}/`);
         });
-	};
+    };
 
 	return (
         <React.Fragment>

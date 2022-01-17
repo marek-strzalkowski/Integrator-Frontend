@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Events(props) {
 
-	const [dataEvents, setEvents] = useState(props.events.results)
+    const [dataEvents, setEvents] = useState(props.events.results)
     const [nextUrl, setNextUrl] = useState(props.events.next)
     
     const handleLoadNext = (e) => {
@@ -21,8 +21,8 @@ export default function Events(props) {
 
 	if (!dataEvents || dataEvents.length === 0) return <p>Can not find any events, sorry</p>;
 	return (
-		<React.Fragment>
-			<div className='row'>  
+	<React.Fragment>
+	    <div className='row'>  
 
                 {dataEvents.map((anEvent) => {                
                     return (
@@ -45,7 +45,7 @@ export default function Events(props) {
             </div>
 
             {nextUrl !== null && <p><button className='btn btn-outline-primary' onClick={handleLoadNext}>Load next</button></p>}
-		</React.Fragment>
+	</React.Fragment>
 	);
 
 };

@@ -8,8 +8,8 @@ export default function Register() {
 	const initialFormData = Object.freeze({
 		email: '',
 		username: '',
-        firstname: '',
-        lastname: '',
+        	firstname: '',
+        	lastname: '',
 		password: '',
 	});
 
@@ -26,15 +26,15 @@ export default function Register() {
 		e.preventDefault();
 		
 		axiosInstance.post(`user/register/`, {
-            email: formData.email,
-            user_name: formData.username,
-            first_name: formData.firstname,
-            last_name: formData.lastname,
-            password: formData.password,
-        })
-        .then((res) => {
-            navigate('/login');
-        });
+		    email: formData.email,
+		    user_name: formData.username,
+		    first_name: formData.firstname,
+		    last_name: formData.lastname,
+		    password: formData.password,
+		})
+		.then((res) => {
+		    navigate('/login');
+		});
 	};
 
 	return (

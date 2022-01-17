@@ -11,7 +11,7 @@ export default function Post (props) {
     const handleLike = (e) => {
         e.preventDefault();
 
-		axiosInstance.put(`post/like/${id}/`, {})
+	axiosInstance.put(`post/like/${id}/`, {})
         .then((res) => {    
             setPost({ post: res.data });    
         });               
@@ -19,27 +19,27 @@ export default function Post (props) {
 
     const [dataComments, setComments] = useState({ comments: [] });
     const initialFormData = Object.freeze({
-		comment: '',
-	});
+	comment: '',
+    });
     const [formData, updateFormData] = useState(initialFormData);
     
-	useEffect(() => {
-		axiosInstance.get(`post/comments/?id=${id}`).then((res) => {
-			setComments({ comments: res.data });			
-		});        
-	}, [setComments]);
+    useEffect(() => {
+	axiosInstance.get(`post/comments/?id=${id}`).then((res) => {
+		setComments({ comments: res.data });			
+	});        
+    }, [setComments]);
     
     const handleChange = (e) => {
-		updateFormData({
-			...formData,			
-			[e.target.name]: e.target.value,
-		});
-	};
+	updateFormData({
+		...formData,			
+		[e.target.name]: e.target.value,
+	});
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();		
 
-		axiosInstance.post(`post/comment/${id}/`, {
+	axiosInstance.post(`post/comment/${id}/`, {
             text: formData.comment.trim(),
         })
         .then((res) => {                
@@ -50,8 +50,8 @@ export default function Post (props) {
 
     if (!PostData.post || PostData.post.length === 0) return <p>Error!</p>;
 	return (
-		<React.Fragment>
-			<div className='col'>
+	<React.Fragment>
+	    <div className='col'>
                 <div className='card mt-2 mb-4' style={{maxWidth:'50rem', minWidth:'20rem'}}>                                            
                     <div className='card-body'>
                         <p className='card-text'><Link to={{ pathname: `/profile/${PostData.post.creator.id}` }}>{PostData.post.creator.first_name} {PostData.post.creator.last_name}</Link> <small className='text-secondary ml-2'>{PostData.post.timestamp}</small></p>
@@ -80,7 +80,7 @@ export default function Post (props) {
                     </div>
                 </div>
             </div>            
-		</React.Fragment>
+	</React.Fragment>
 	);
 
 };

@@ -8,39 +8,39 @@ export default function EditProfilePicture() {
     const { id } = useParams();
     const initialFormData = Object.freeze({
         id: '',
-		image: '',
-	});
-	const [formData, updateFormData] = useState(initialFormData);
+	image: '',
+    });
+    const [formData, updateFormData] = useState(initialFormData);
 
     useEffect(() => {
-		axiosInstance.get(`user/editpicture/${id}`).then((res) => {
-			if (res.data.is_me === false) {
+	axiosInstance.get(`user/editpicture/${id}`).then((res) => {
+	    if (res.data.is_me === false) {
                 window.location.href = '/';
             }            
             updateFormData({
-				...formData,                				                
+		...formData,                				                
                 currentImage: res.data.image,
-			});		            
-		});
-	}, [updateFormData]);
+	    });		            
+	});
+    }, [updateFormData]);
 
-	const handleChange = (e) => {
-		updateFormData({
-			...formData,			
-			[e.target.name]: e.target.files,
-		});
-	};
+    const handleChange = (e) => {
+	updateFormData({
+		...formData,			
+		[e.target.name]: e.target.files,
+	});
+    };
 
-	const handleSubmit = (e) => {
-		e.preventDefault();		
+    const handleSubmit = (e) => {
+	e.preventDefault();		
                 
-		let formDataPicture = new FormData();		
-		formDataPicture.append('image', formData.image[0]);
-		axiosInstance.put(`user/editpicture/${id}/`, formDataPicture)
+	let formDataPicture = new FormData();		
+	formDataPicture.append('image', formData.image[0]);
+	axiosInstance.put(`user/editpicture/${id}/`, formDataPicture)
         .then((res) => {
             navigate(`../profile/${id}/`);
         });
-	};
+    };
 
 	return (
         <React.Fragment>

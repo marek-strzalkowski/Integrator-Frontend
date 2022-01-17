@@ -5,10 +5,10 @@ export default function Locations(props) {
 
 	const { locations } = props;	    
 	
-    if (!locations || locations.length === 0) return <p>Can not find any locations, sorry</p>;
+    	if (!locations || locations.length === 0) return <p>Can not find any locations, sorry</p>;
 	return (
-		<React.Fragment>
-			<div className='row'>  
+	<React.Fragment>
+	    <div className='row'>  
             
                 {locations.map((location) => {                
                     return (
@@ -28,7 +28,7 @@ export default function Locations(props) {
                 })}
 
             </div>            
-		</React.Fragment>
+	</React.Fragment>
 	);
 
 };

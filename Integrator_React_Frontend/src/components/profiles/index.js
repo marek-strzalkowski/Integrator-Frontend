@@ -4,14 +4,14 @@ import { useParams, Link } from 'react-router-dom';
 
 export default function Profile() {
 
-	const { id } = useParams();
-	const [dataProfile, setData] = useState({ profile: [] });
+    const { id } = useParams();
+    const [dataProfile, setData] = useState({ profile: [] });
 
-	useEffect(() => {
-		axiosInstance.get(`user/profile/${id}/`).then((res) => {
-			setData({ profile: res.data });			
-		});        
-	}, [setData]);
+    useEffect(() => {
+	axiosInstance.get(`user/profile/${id}/`).then((res) => {
+		setData({ profile: res.data });			
+	});        
+    }, [setData]);
 
     const handleLink = (e) => {
         e.preventDefault();        
@@ -19,8 +19,8 @@ export default function Profile() {
     }
 
 	return (
-		<React.Fragment>
-			<div className='container'>
+	<React.Fragment>
+	    <div className='container'>
                 <div className='row'>              
                     <div className='col'>
                         <div className='card mt-2 mb-4 bg-primary text-white'>
@@ -41,7 +41,7 @@ export default function Profile() {
                     </div>            
                 </div>            
             </div>
-		</React.Fragment>
+	</React.Fragment>
 	);
 
 }

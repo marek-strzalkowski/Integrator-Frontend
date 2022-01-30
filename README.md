@@ -7,7 +7,7 @@
 <p>Integrator is an application to organize local parties and events for registered users. Every user can follow locations registered thru admin panel, create events, go to events, post, like and many more.</p>
 
 <h3>Technical description</h3>
-<p>Application is built in React JS and is only a frontend - need backend to operate. It is UI that uses axios, Simple JWT authentication and Bootstrap styling. Fromat of communication - JSON, handles paginated responses.</p>
+<p>Application is built in React JS and is only a frontend - need backend to operate. It is UI that uses axios, Simple JWT authentication and Bootstrap styling. Format of communication - JSON, handles paginated responses.</p>
 
 <h3>Installation</h3>
 <p>In order to test application you need to have backend running and configured.</p>
